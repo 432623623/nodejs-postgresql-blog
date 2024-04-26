@@ -14,7 +14,6 @@ const db = new pg.Client({
 
 db.connect();
 
-
 const currDate = new Date();
 const yr = currDate.getFullYear();
 const mn = currDate.getMonth() + 1;
