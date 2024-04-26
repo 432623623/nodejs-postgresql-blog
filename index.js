@@ -2,14 +2,14 @@ import express from "express";
 import pg from "pg";
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const db = new pg.Client({
   user:"postgres",
-  host:"localhost",
-  database:"blog",
-  password:"edmonton",
-  port:5432,
+  host:"roundhouse.proxy.rlwy.net",
+  database:"railway",
+  password:"qftWeSsNZPdXlUuRrgKQmvOAXQJQWQYL",
+  port:52841,
 });
 
 db.connect();
