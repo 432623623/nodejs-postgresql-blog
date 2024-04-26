@@ -41,7 +41,7 @@ app.use(express.urlencoded({extended:true}));
 
 async function getPosts(){
   try{
-    const res = await db.query("SELECT id, title, to_char(postdate, 'YYYY-MM-DD') AS postdate, to_char(editdate, 'YYYY-MM-DD') AS editdate FROM posts;");
+    const res = await db.query("SELECT id, title, to_char(postdate, 'YYYY-MM-DD') AS postdate, to_char(editdate, 'YYYY-MM-DD') AS editdate FROM posts ORDER BY id ASC;");
     items = res.rows;
     return items;  
   }catch(err){
@@ -88,7 +88,7 @@ async function deletePost(id){
 
 async function searchPosts(st){
   try{
-    const res = await db.query("SELECT id, title, to_char(postdate, 'YYYY-MM-DD') AS postdate, to_char(editdate, 'YYYY-MM-DD') AS editdate FROM posts WHERE title LIKE '%' || $1 || '%' OR posttext LIKE '%' || $1 || '%';", [st]);
+    const res = await db.query("SELECT id, title, to_char(postdate, 'YYYY-MM-DD') AS postdate, to_char(editdate, 'YYYY-MM-DD') AS editdate FROM posts WHERE LOWER(title) LIKE '%' || $1 || '%' OR LOWER(posttext) LIKE '%' || $1 || '%';", [st]);
     items = res.rows;
     return items;  
   }catch(err){
