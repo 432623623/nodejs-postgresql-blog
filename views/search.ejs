@@ -1,0 +1,24 @@
+<%- include("partials/header.ejs") %>
+
+  <% if (sRes.length!==0) { %>
+  <ul>
+    <% for (let i=sRes.length-1;i>=0;i--) { %>
+      <li>
+        <a href="/post/<%= sRes[i].id %>">
+        <%= sRes[i].title + ", " + sRes[i].postdate%>
+        <% if (sRes[i].editDate) { %>
+         (edited: <%- sRes[i].editDate %>)
+        <% } %>	
+        </a>
+      </li>
+    <% } %>
+  </ul>
+  <% } else { %>
+    <p>no results!</p>
+  <% } %>
+
+  <br><br>
+  <form action="/new" method="GET">
+    <input type="submit" value="**new post**">
+  </form>
+<%- include("partials/footer.ejs")%>	
